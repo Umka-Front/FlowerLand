@@ -1,0 +1,89 @@
+$gray-600: #6c757d !default;
+$gray-100: #f8f9fa !default;
+$gray-800: #343a40 !default;
+
+$blue: #0d6efd !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+) !default;
+
+.treeview {
+  width: 100%;
+
+  .active,
+  .treeview-category {
+    padding: 0 0.4rem 0 0.4rem;
+    border-radius: 5px;
+  }
+
+  ul {
+    ul:not(.collapse):not(.collapsing):not(.show) {
+      display: none;
+    }
+  }
+
+  li {
+    list-style-type: none;
+    margin: 3px 0 3px 0;
+  }
+
+  a {
+    color: #4f4f4f;
+    display: block;
+  }
+
+  a[data-toggle='collapse'] {
+    color: unset;
+  }
+
+  span[aria-label='toggle'] {
+    i {
+      transition: 0.3s;
+      cursor: pointer;
+    }
+  }
+}
+
+// Color options
+@each $color, $value in $theme-colors {
+  $red: red($value);
+  $green: green($value);
+  $blue: blue($value);
+
+  .treeview-category:hover {
+    background-color: rgba($red, $green, $blue, 0.05);
+  }
+
+  .treeview-#{$color} {
+    .active {
+      color: $value !important;
+      background-color: rgba($red, $green, $blue, 0.05);
+    }
+  }
+}
